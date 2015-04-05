@@ -16,7 +16,7 @@
 
 import java.util.ArrayList;
 
-public class Solution {
+public class SearchRange-LintCode {
     /** 
      *@param A : an integer sorted array
      *@param target :  an integer to be inserted

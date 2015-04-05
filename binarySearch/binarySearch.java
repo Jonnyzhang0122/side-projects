@@ -16,7 +16,7 @@
 // Tags Expand 
 // Binary Search Array
 
-class Solution {
+class BinarySearch {
     /**
      * @param nums: The integer array.
      * @param target: Target to find.
