@@ -15,9 +15,6 @@ public class RemoveDup {
         if (A == null || A.length == 0) {
         	return 0;
         }
-        if (A.length == 1) {
-        	return 1;
-        }
 
         int length = 1;
         for (int i = 1; i < A.length; ++i) {
