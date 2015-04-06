@@ -1,3 +1,4 @@
+// LintCode
 // Medium First Bad Version
 
 // 32% Accepted
