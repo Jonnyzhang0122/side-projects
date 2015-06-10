@@ -1,3 +1,3 @@
 # leetcode
-Practicing problems on LeetCode and LintCode.
+Practicing problems on LeetCode(and part of LintCode).
 Progressing.
