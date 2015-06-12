@@ -24,21 +24,35 @@
  * }
  */
 public class PathSum {
+    // public boolean hasPathSum(TreeNode root, int sum) {
+    // 	return pathSum(root, sum, 0);
+    // }
+
+    // public boolean pathSum(TreeNode root, int sum, int parentSum) {
+    // 	if (root == null) {
+    // 		return false;
+    // 	}
+
+    // 	if (parentSum + root.val == sum) {
+    // 		if (parentSum != 0 || (root.left == null && root.right == null)) {
+	   //  		return true;
+    // 		}
+    // 	}
+
+    // 	return pathSum(root.left, sum, parentSum + root.val) || pathSum(root.right, sum, parentSum + root.val);
+    // }
+
     public boolean hasPathSum(TreeNode root, int sum) {
-    	return pathSum(root, sum, 0);
+        if (root == null) {
+            return false;
+        }
+
+        // judge if we touch the bottom
+        if (root.left == null && root.right == null) {
+            return sum == root.val;
+        }
+
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
-    public boolean pathSum(TreeNode root, int sum, int parentSum) {
-    	if (root == null) {
-    		return false;
-    	}
-
-    	if (parentSum + root.val == sum) {
-    		if (parentSum != 0 || (root.left == null && root.right == null)) {
-	    		return true;
-    		}
-    	}
-
-    	return pathSum(root.left, sum, parentSum + root.val) || pathSum(root.right, sum, parentSum + root.val);
-    }
 }
