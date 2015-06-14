@@ -61,7 +61,6 @@ public class BSTIterator {
 
 
 	private Stack<TreeNode> stack = new Stack<TreeNode>();
-	private TreeNode current;
 
 	private void pushLeft(TreeNode node) {
 		while (node != null) {
@@ -70,33 +69,26 @@ public class BSTIterator {
 		}
 	}
 
-    public BSTIterator(TreeNode root) {
+	public BSTIterator (TreeNode root) {
 		while (!stack.isEmpty()) {
 			stack.pop();
 		}
-		current = root;
-		pushLeft(current);
-    }
+		pushLeft(root);
+	}
 
-    /** @return whether we have a next smallest number */
-    public boolean hasNext() {
-        // return current != null || !stack.isEmpty();
-    	return !stack.isEmpty();
-    }
+	public Boolean hasNext() {
+		return !stack.isEmpty();
+	}
 
-    /** @return the next smallest number */
-    public int next() {
-    	// push all left into the stack, achieve the in-order traversal
-    	// pushLeft(current);
-
-        current = stack.pop();
+	public int next() {
+		TreeNode current = stack.pop();
 		int val = current.val;
 		if (current.right != null) {
 			pushLeft(current.right);
 		}
-		
+
 		return val;
-    }
+	}
 }
 
 /**
