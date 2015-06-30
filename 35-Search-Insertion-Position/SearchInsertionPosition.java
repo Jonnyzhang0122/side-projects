@@ -12,47 +12,47 @@
 // Hide Tags Array Binary Search
 
 public class SearchInsertionPosition {
-  public int searchInsert(int[] A, int target) {
+	public int searchInsert(int[] A, int target) {
       
-      if (A == null) {
-      	return -1;
-      }
-
-      int start = 0;
-      int end = A.length - 1;
-      int mid;
-			
-			while (start + 1 < end) {
-				mid = start + (end - start) / 2;
-				if (A[mid] == target) {
-					end = mid;
-				}
-				else if (A[mid] > target) {
-					end = mid;
-				}
-				else if (A[mid] < target) {
-					start = mid;
-				}
-			}
-
-			if (A[start] == target) {
-				return start;
-			}
-			if (A[end] == target) {
-				return end;
-			}
-			if (A[start] > target) {
-				return start;
-			}
-			if (A[start] < target && A[end] > target) {
-				return start + 1;
-			}
-			if (A[end] < target) {
-				return end + 1;
-			}
-
+		if (A == null) {
 			return -1;
-  }
+		}
+
+		int start = 0;
+		int end = A.length - 1;
+		int mid;
+				
+		while (start + 1 < end) {
+			mid = start + (end - start) / 2;
+			if (A[mid] == target) {
+				end = mid;
+			}
+			else if (A[mid] > target) {
+				end = mid;
+			}
+			else if (A[mid] < target) {
+				start = mid;
+			}
+		}
+
+		if (A[start] == target) {
+			return start;
+		}
+		if (A[end] == target) {
+			return end;
+		}
+		if (A[start] > target) {
+			return start;
+		}
+		if (A[start] < target && A[end] > target) {
+			return start + 1;
+		}
+		if (A[end] < target) {
+			return end + 1;
+		}
+
+		return -1;
+  	}
 
 	public static void main(String[] args) {
 		SearchInsertionPosition A = new SearchInsertionPosition();
