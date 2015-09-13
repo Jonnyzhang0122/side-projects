@@ -1,20 +1,4 @@
-// Count Complete Tree Nodes Total Accepted: 2840 Total Submissions: 14427 My Submissions Question Solution 
-// Given a complete binary tree, count the number of nodes.
 
-// Definition of a complete binary tree from Wikipedia:
-// In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
-
-// Hide Tags Tree Binary Search
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 public class CountNodes {
 	// /*normal recursion surpass time limit*/
 	// private int nodeNum = 0;

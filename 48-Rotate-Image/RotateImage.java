@@ -1,13 +1,3 @@
-// Rotate Image My Submissions Question Solution 
-// Total Accepted: 45869 Total Submissions: 142460 Difficulty: Medium
-// You are given an n x n 2D matrix representing an image.
-
-// Rotate the image by 90 degrees (clockwise).
-
-// Follow up:
-// Could you do this in-place?
-
-// Hide Tags Array
 
 public class Solution {
     /*

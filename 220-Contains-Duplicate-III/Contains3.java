@@ -1,8 +1,3 @@
-// Contains Duplicate III Total Accepted: 11608 Total Submissions: 72898 My Submissions Question Solution 
-// Given an array of integers, find out whether there are two distinct indices i and j in the array such that the difference between nums[i] and nums[j] is at most t and the difference between i and j is at most k.
-
-// Hide Tags Binary Search Tree
-// Hide Similar Problems (E) Contains Duplicate (E) Contains Duplicate II
 
 import java.util.*;
 

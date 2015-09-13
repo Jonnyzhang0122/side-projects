@@ -1,17 +1,4 @@
-// Insertion Sort List Total Accepted: 46367 Total Submissions: 174901 My Submissions Question Solution 
-// Sort a linked list using insertion sort.
 
-// Hide Tags Linked List Sort
-// Hide Similar Problems (M) Sort List
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 public class InsertionList {
     // untest
     // public ListNode insertionSortList(ListNode head) {

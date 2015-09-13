@@ -1,14 +1,3 @@
-// Summary Ranges My Submissions Question Solution 
-// Total Accepted: 19383 Total Submissions: 102404 Difficulty: Easy
-// Given a sorted integer array without duplicates, return the summary of its ranges.
-
-// For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
-
-// Credits:
-// Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.
-
-// Hide Tags Array
-// Hide Similar Problems (M) Missing Ranges
 
 import java.util.*;
 
