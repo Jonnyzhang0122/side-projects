@@ -1,25 +1,4 @@
-// Convert Sorted List to Binary Search Tree Total Accepted: 41401 Total Submissions: 148411 My Submissions Question Solution 
-// Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 
-// Hide Tags Depth-first Search Linked List
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 public class ConvertList {
     // private class ResultType {
     //  TreeNode root; // builder TreeNode, or k/2 th TreeNode

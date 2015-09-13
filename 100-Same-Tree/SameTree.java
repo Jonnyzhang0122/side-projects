@@ -1,20 +1,4 @@
-// Same Tree Total Accepted: 63119 Total Submissions: 150692 My Submissions Question Solution 
-// Given two binary trees, write a function to check if they are equal or not.
 
-// Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
-
-// Hide Tags Tree Depth-first Search
-
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 public class SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {
     	if (p == null && q == null) {
