@@ -51,7 +51,6 @@ public class Atoi {
         	flag = true;
         	temp = str.charAt(pos) - '0';
         	result = result * 10 + temp;
-        	System.out.println(result);
         	if (result >= Integer.MAX_VALUE && sign == 1) {
         		return Integer.MAX_VALUE;
         	}
