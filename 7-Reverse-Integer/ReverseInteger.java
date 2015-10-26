@@ -21,26 +21,41 @@
 // Hide Tags Math
 	
 public class ReverseInteger {
+	// public int reverse(int x) {
+	// 	int temp = 0;
+	// 	long result = 0;
+	// 	while (x != 0) {
+	// 		result *= 10;
+	// 		result += x % 10;
+	// 		x /= 10;
+	// 	}
+
+	// 	if (result >= 2147483648L || result <= -2147483648L) {
+	// 		return 0;
+	// 	}
+
+	// 	return (int)result;
+ //  	}
+
+	// public static void main (String[] args) {
+	// 	ReverseInteger A = new ReverseInteger();
+	// 	int x = 1534236469;
+	// 	int result = A.reverse(x);
+	// 	System.out.println(result);
+	// }
+
 	public int reverse(int x) {
-		int temp = 0;
-		long result = 0;
-		while (x != 0) {
-			result *= 10;
-			result += x % 10;
-			x /= 10;
-		}
-
-		if (result >= 2147483648L || result <= -2147483648L) {
-			return 0;
-		}
-
-		return (int)result;
-  	}
-
-	public static void main (String[] args) {
-		ReverseInteger A = new ReverseInteger();
-		int x = 1534236469;
-		int result = A.reverse(x);
-		System.out.println(result);
-	}
+        long res = 0;
+        while (x != 0) {
+            long temp = x % 10;
+            res = res * 10 + temp;
+            x /= 10;
+        }
+        
+        if (res > (long)Integer.MAX_VALUE || res < (long)Integer.MIN_VALUE) {
+            return 0;
+        }
+        
+        return (int)res;
+    }
 }
