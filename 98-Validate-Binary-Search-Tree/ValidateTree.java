@@ -86,38 +86,121 @@ public class ValidateTree {
     //     return helper(root.left, minVal, root.val) && helper(root.right, root.val, maxVal);
     // }
 
-    int currMax = Integer.MIN_VALUE;
-    int flag = 1;
 
+    // AC, but complex
+    // int currMax = Integer.MIN_VALUE;
+    // int flag = 1;
+
+    // public boolean isValidBST(TreeNode root) {
+    //     if (root == null) {
+    //         return true;
+    //     }
+    //     if (root.left == null && root.right == null) {
+    //         return true;
+    //     }
+
+    //     return helper(root);
+    // }
+
+    // public boolean helper(TreeNode root) {
+    //     if (root == null) {
+    //         return true;
+    //     }
+
+    //     if (helper(root.left) == false) {
+    //         return false;
+    //     }
+    //     if (root.val <= currMax) {
+    //         if (currMax == Integer.MIN_VALUE && flag == 1) {
+    //             flag = 0;
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
+    //     currMax = root.val;
+
+    //     return helper(root.right);
+    // }
+
+    // wrong solution, have not considered the whole subtree
+    /*
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
-        if (root.left == null && root.right == null) {
-            return true;
-        }
-
-        return helper(root);
+        
+        int left = 0, right = 1;
+        return validate(root.left, root.val, left) && validate(root.right, root.val, right);
     }
-
-    public boolean helper(TreeNode root) {
+    
+    private boolean validate(TreeNode root, int parentVal, int lefOrRig) {
         if (root == null) {
             return true;
         }
-
-        if (helper(root.left) == false) {
+        if (lefOrRig == 0 && root.val >= parentVal) {
             return false;
         }
-        if (root.val <= currMax) {
-            if (currMax == Integer.MIN_VALUE && flag == 1) {
-                flag = 0;
-            }
-            else {
+        else if (lefOrRig == 1 && root.val <= parentVal) {
+            return false;
+        }
+        
+        return validate(root.left, root.val, 0) && validate(root.right, root.val, 1);
+    }
+    */
+    
+    // normal inorder traversal
+    /*
+    private ArrayList<Integer> res = new ArrayList<Integer>();
+    
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        
+        traversal(root);
+        int len = res.size();
+        for (int i = 1; i < len; ++i) {
+            if (res.get(i) <= res.get(i - 1)) {
                 return false;
             }
         }
-        currMax = root.val;
-
-        return helper(root.right);
+        return true;
     }
+    
+    private void traversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        traversal(root.left);
+        res.add(root.val);
+        traversal(root.right);
+    }
+    */
+
+    // inplace inorder traversal
+    private TreeNode cur = null;
+    
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        
+        if (!isValidBST(root.left)) {
+            return false;
+        }
+        
+        if (cur != null && root.val <= cur.val) {
+            return false;
+        }
+        cur = root;
+        
+        if (!isValidBST(root.right)) {
+            return false;
+        }
+        
+        return true;
+    }
+
 }
