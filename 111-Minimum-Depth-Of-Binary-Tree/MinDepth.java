@@ -48,3 +48,29 @@ public class MinDepth {
     	System.out.println(A.minDepth(q));    
     }
 }
+
+// public class Solution {
+//     private int min = Integer.MAX_VALUE;
+    
+//     public int minDepth(TreeNode root) {
+//         if (root == null) {
+//             return 0;
+//         }
+        
+//         traversal(root, 1);
+//         return min;
+//     }
+    
+//     private void traversal(TreeNode root, int depth) {
+//         if (root == null) {
+//             return;
+//         }
+//         if (root.left == null && root.right == null) {
+//             min = Math.min(min, depth);
+//             return;
+//         }
+//         ++depth;
+//         traversal(root.left, depth);
+//         traversal(root.right, depth);
+//     }
+// }
