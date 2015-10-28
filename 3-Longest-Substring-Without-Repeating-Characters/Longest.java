@@ -38,3 +38,36 @@ public class Longest {
     	System.out.println(A.lengthOfLongestSubstring(s));
     }
 }
+
+// public class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         int len = s.length();
+//         if (len == 0) {
+//             return 0;
+//         }
+        
+//         HashSet<Character> set = new HashSet<Character>();
+//         Queue<Character> queue = new LinkedList<Character>();
+//         int max = 0;
+        
+//         for (int i = 0; i < len; ++i) {
+//             char cur = s.charAt(i);
+//             if (!set.contains(cur)) {
+//                 queue.offer(cur);
+//                 set.add(cur);
+//                 max = Math.max(max, queue.size());
+//             }
+//             else {
+//                 while (!queue.isEmpty() && set.contains(cur)) {
+//                     char polled = queue.poll();
+//                     set.remove(polled);
+//                 }
+//                 queue.offer(cur);
+//                 set.add(cur);
+//                 max = Math.max(max, queue.size());
+//             }
+//         }
+        
+//         return max;
+//     }
+// }
