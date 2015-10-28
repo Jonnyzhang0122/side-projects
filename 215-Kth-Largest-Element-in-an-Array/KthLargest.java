@@ -1,28 +1,28 @@
 
 public class Solution {
     // max heap version
-    public int findKthLargest(int[] nums, int k) {
-        int len = nums.length;
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(len, IntComparator);
+    // public int findKthLargest(int[] nums, int k) {
+    //     int len = nums.length;
+    //     PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(len, IntComparator);
         
-        for (int num : nums) {
-            maxHeap.add(num);
-        }
+    //     for (int num : nums) {
+    //         maxHeap.add(num);
+    //     }
         
-        int result = 0;
-        for (int i = 0; i < k; ++i) {
-            result = maxHeap.poll();
-        }
+    //     int result = 0;
+    //     for (int i = 0; i < k; ++i) {
+    //         result = maxHeap.poll();
+    //     }
         
-        return result;
-    }
+    //     return result;
+    // }
     
-    private Comparator<Integer> IntComparator = new Comparator<Integer>() {
-        public int compare(Integer left, Integer right) {
-            // let the bigger one be the first
-            return right - left;
-        }
-    };
+    // private Comparator<Integer> IntComparator = new Comparator<Integer>() {
+    //     public int compare(Integer left, Integer right) {
+    //         // let the bigger one be the first
+    //         return right - left;
+    //     }
+    // };
     
     // sort version
     /*
@@ -105,4 +105,49 @@ public class Solution {
         return result;
     }
     */
+
+
+    public int findKthLargest(int[] nums, int k) {
+        int len = nums.length;
+        if (len == 0 || k > len || k <= 0) {
+            return 0;
+        }
+        
+        return KLargest(nums, 0, len - 1, k);
+    }
+    
+    private int KLargest(int[] nums, int start, int end, int k) {
+        int pivot = nums[end];
+        int pos = start - 1;
+        
+        for (int i = start; i < end; ++i) {
+            // put the larger element to the front
+            if (nums[i] > pivot) {
+                ++pos;
+                swap(nums, pos, i);
+            }
+        }
+        // put the pivot back in middle
+        swap(nums, pos + 1, end);
+        
+        // check the position now
+        int pivotPos = pos + 1 - start + 1;
+        if (pivotPos == k ) {
+            return pivot;
+        }
+        else if (pivotPos > k) {
+            return KLargest(nums, start, pos, k);
+        }
+        else {
+            return KLargest(nums, pos + 2, end, k - pivotPos);
+        }
+    }
+    
+    private void swap(int[] nums, int index1, int index2) {
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
+    }
+
 }
+
