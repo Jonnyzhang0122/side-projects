@@ -33,13 +33,14 @@ public class Coins3 {
         }
         if (values.length == 2) {
         	if (values[0] == values[1]) {
-        		return true;
+        		return false;
         	}
-        	return false;
+        	return true;
         }
 
         int n = values.length;
 
+        // represent if start from this range [i, j], the max values could gain
         int[][] dp = new int[n + 2][n + 2];
         for (int i = 1; i < dp.length; ++i) {
         	for (int j = 1; j < dp[0].length; ++j) {
@@ -47,15 +48,21 @@ public class Coins3 {
         	}
         }
 
+        // the initial status, when i == j, only one choice
         for (int i = 1; i <= n; ++i) {
         	dp[i][i] = values[i - 1];
         }
 
         int solution1, solution2;
+        // i means the start of range, j means the end, inclusive
+        // loop from i == j, left to right, bottom to top (in DP table view)
         for (int i = n; i >= 1; --i) {
         	for (int j = i + 1; j <= n; ++j) {
-        		solution1 = values[i - 1] + Math.min(dp[i + 2][j], dp[i + 1][j - 1]);
-        		solution2 = values[j - 1] + Math.min(dp[i + 1][j - 1], dp[i][j - 2]);
+                // two conditions
+                // 1: take the first coin -> number i
+        		solution1 = values[(i) - 1] + Math.min(dp[i + 2][j], dp[i + 1][j - 1]);
+                // 2: take the last coin -> number j
+        		solution2 = values[(j) - 1] + Math.min(dp[i + 1][j - 1], dp[i][j - 2]);
         		dp[i][j] = Math.max(solution1, solution2);
         	}
         }
@@ -70,7 +77,7 @@ public class Coins3 {
     }
 
     public static void main(String args[]) {
-    	int[] values = {1, 20, 4};
+    	int[] values = {1, 4};
     	Coins3 A = new Coins3();
     	System.out.println(A.firstWillWin(values));
     }
