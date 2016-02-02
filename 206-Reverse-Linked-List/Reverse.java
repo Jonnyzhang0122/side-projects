@@ -34,3 +34,24 @@ public class Reverse {
         return prev;
     }
 }
+
+// recursion version
+// public class Solution {
+//     public ListNode reverseList(ListNode head) {
+//         if (head == null || head.next == null) {
+//             return head;
+//         }
+        
+//         return helper(head, null);
+//     }
+    
+//     private ListNode helper(ListNode head, ListNode prev) {
+//         if (head == null) {
+//             return prev;
+//         }
+        
+//         ListNode temp = head.next;
+//         head.next = prev;
+//         return helper(temp, head);
+//     }
+// }
