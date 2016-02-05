@@ -34,8 +34,7 @@ public class Jump {
 
 		for (int i = curStone; i < stones.size(); ++i) {
 			if (checkValid(prevDistance, stones.get(i) - stones.get(prevStone))) {
-				int nextStone = i + 1;
-				if (helper(stones.get(i) - stones.get(prevStone), i, nextStone))
+				if (helper(stones.get(i) - stones.get(prevStone), i, i + 1))
 					return true;
 			}
 		}
@@ -66,23 +65,23 @@ public class Jump {
 
 
 	// weiran solution
-	public boolean isReachable(int[] array) {
-		if (array == null || array.length == 0) return false;
-		List<HashSet<Integer>> setList = new ArrayList<HashSet<Integer>>();
-		for (int i = 0; i <= array.length; i++) {
-			setList.add(new HashSet<Integer>());
-		}
-		setList.get(0).add(1);
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] != 1) continue;
-			for (int prevStep : setList.get(i)) {
-				for (int currStep = prevStep - 1; currStep <= prevStep + 1; currStep++) {
-					if (i + currStep <= array.length) setList.get(i + currStep).add(currStep);
-				}
-			}
-		}
-		return setList.get(array.length).size() != 0;
-	}
+	// public boolean isReachable(int[] array) {
+	// 	if (array == null || array.length == 0) return false;
+	// 	List<HashSet<Integer>> setList = new ArrayList<HashSet<Integer>>();
+	// 	for (int i = 0; i <= array.length; i++) {
+	// 		setList.add(new HashSet<Integer>());
+	// 	}
+	// 	setList.get(0).add(1);
+	// 	for (int i = 0; i < array.length; i++) {
+	// 		if (array[i] != 1) continue;
+	// 		for (int prevStep : setList.get(i)) {
+	// 			for (int currStep = prevStep - 1; currStep <= prevStep + 1; currStep++) {
+	// 				if (i + currStep <= array.length) setList.get(i + currStep).add(currStep);
+	// 			}
+	// 		}
+	// 	}
+	// 	return setList.get(array.length).size() != 0;
+	// }
 
 
 // --------------------------------------------------------------------
