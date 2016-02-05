@@ -1,9 +1,8 @@
 import java.util.*;
 
-// backtacking version, improved version
+// backtacking version, improved version, fixed first jump distance
 public class Jump {
 	private int[] river;
-	private boolean foundStone = false;
 	private List<Integer> stones;
 
 	public boolean jump(int[] river) {
@@ -22,21 +21,19 @@ public class Jump {
 			return true;
 
 		// start from the second stone
-		return helper(-1, 0, 1);
+		return helper(1, 0, 1);
 	}
 
 	private boolean helper(int prevDistance, int prevStone, int curStone) {
 		// if reach the very end
 		if (curStone == stones.size()) {
-			// if first jump or valid
-			if (prevStone == 0 || checkValid(prevDistance, river.length - stones.get(prevStone)))
+			if (checkValid(prevDistance, river.length - stones.get(prevStone)))
 				return true;
 			return false;
 		}
 
 		for (int i = curStone; i < stones.size(); ++i) {
-			// if first jump or valid
-			if (prevStone == 0 || checkValid(prevDistance, stones.get(i) - stones.get(prevStone))) {
+			if (checkValid(prevDistance, stones.get(i) - stones.get(prevStone))) {
 				int nextStone = i + 1;
 				if (helper(stones.get(i) - stones.get(prevStone), i, nextStone))
 					return true;
@@ -64,6 +61,28 @@ public class Jump {
 		System.out.println(test.jump(river));
 	}
 }
+
+// --------------------------------------------------------------------
+
+
+	// weiran solution
+	public boolean isReachable(int[] array) {
+		if (array == null || array.length == 0) return false;
+		List<HashSet<Integer>> setList = new ArrayList<HashSet<Integer>>();
+		for (int i = 0; i <= array.length; i++) {
+			setList.add(new HashSet<Integer>());
+		}
+		setList.get(0).add(1);
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != 1) continue;
+			for (int prevStep : setList.get(i)) {
+				for (int currStep = prevStep - 1; currStep <= prevStep + 1; currStep++) {
+					if (i + currStep <= array.length) setList.get(i + currStep).add(currStep);
+				}
+			}
+		}
+		return setList.get(array.length).size() != 0;
+	}
 
 
 // --------------------------------------------------------------------
