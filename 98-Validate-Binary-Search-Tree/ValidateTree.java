@@ -20,29 +20,56 @@
  * }
  */
 
-
+// stack version
 public class Solution {
-    private long curVal = (long)Integer.MIN_VALUE - 1;
-    
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
         
-        if (!isValidBST(root.left)) {
-            return false;
+        long prevVal = (long)Integer.MIN_VALUE - 1;
+        Stack<TreeNode> stack = new Stack<>();
+        pushLeft(root, stack);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            if ((long)cur.val <= prevVal) return false;
+            prevVal = cur.val;
+            pushLeft(cur.right, stack);
         }
-        if ((long)root.val <= curVal) {
-            return false;
-        }
-        curVal = root.val;
-        if (!isValidBST(root.right)) {
-            return false;
-        }
-        
         return true;
     }
+    
+    private void pushLeft(TreeNode root, Stack<TreeNode> stack) {
+        while (root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+    }
 }
+
+
+// public class Solution {
+//     private long curVal = (long)Integer.MIN_VALUE - 1;
+    
+//     public boolean isValidBST(TreeNode root) {
+//         if (root == null) {
+//             return true;
+//         }
+        
+//         if (!isValidBST(root.left)) {
+//             return false;
+//         }
+//         if ((long)root.val <= curVal) {
+//             return false;
+//         }
+//         curVal = root.val;
+//         if (!isValidBST(root.right)) {
+//             return false;
+//         }
+        
+//         return true;
+//     }
+// }
 
 
 // public class ValidateTree {
