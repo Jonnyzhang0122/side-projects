@@ -7,7 +7,33 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 public class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> res = new ArrayList<String>();
+        if (root == null) {
+            return res;
+        }
+        
+        dfs(root, "", res);
+        return res;
+    }
+    
+    private void dfs(TreeNode root, String path, List<String> res) {
+        if (root.right == null && root.left == null) {
+            res.add(path + root.val);
+        }
+        
+        if (root.left != null) {
+            dfs(root.left, path + root.val + "->", res);
+        }
+        if (root.right != null) {
+            dfs(root.right, path + root.val + "->", res);
+        }
+    }
+}
+
+/*public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> res = new ArrayList<String>();
         if (root == null) {
@@ -39,4 +65,4 @@ public class Solution {
         // delete the added on tail including ->
         sb.delete(index - 2, sb.length());
     }
-}
+}*/
