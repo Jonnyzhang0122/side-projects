@@ -39,3 +39,56 @@ public class RandomPonter {
         return map.get(head);
     }
 }
+
+// slow version
+// public class Solution {
+//     public RandomListNode copyRandomList(RandomListNode head) {
+//         if (head == null) {
+//             return head;
+//         }
+        
+//         HashMap<Integer, RandomListNode> map = new HashMap<>();
+//         RandomListNode newHead = null;
+//         while (head != null) {
+//             // copy current node
+//             RandomListNode curNode;
+//             if (!map.containsKey(head.label)) {
+//                 curNode = new RandomListNode(head.label);
+//                 map.put(curNode.label, curNode);
+//             }
+//             else {
+//                 curNode = map.get(head.label);
+//             }
+            
+//             // copy next node
+//             if (head.next != null) {
+//                 if (!map.containsKey(head.next.label)) {
+//                     curNode.next = new RandomListNode(head.next.label);
+//                     map.put(curNode.next.label, curNode.next);
+//                 }
+//                 else {
+//                     curNode.next = map.get(head.next.label);
+//                 }
+//             }
+            
+//             // copy random node
+//             if (head.random != null) {
+//                 if (!map.containsKey(head.random.label)) {
+//                     curNode.random = new RandomListNode(head.random.label);
+//                     map.put(curNode.random.label, curNode.random);
+//                 }
+//                 else {
+//                     curNode.random = map.get(head.random.label);
+//                 }
+//             }
+            
+//             if (newHead == null) {
+//                 newHead = curNode;
+//             }
+//             head = head.next;
+//         }
+        
+//         return newHead;
+//     }
+// }
+
