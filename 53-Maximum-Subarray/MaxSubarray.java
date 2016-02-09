@@ -8,22 +8,39 @@
 
 // Hide Tags Divide and Conquer Array Dynamic Programming
 
-public class MaxSubarray {
+// constant DP
+public class Solution {
     public int maxSubArray(int[] nums) {
-        if (nums == null || nums.length == 0) {
-        	return 0;
+        if (nums.length == 0) {
+            return 0;
         }
-
-        int[] table = new int[nums.length];
-        table[0] = nums[0];
-        int max = table[0];
+        
+        int prevMax = nums[0], max = nums[0];
         for (int i = 1; i < nums.length; ++i) {
-        	table[i] = Math.max(table[i - 1] + nums[i], nums[i]);
-        	if (table[i] > max) {
-        		max = table[i];
-        	}
+            prevMax = Math.max(prevMax + nums[i], nums[i]);
+            max = Math.max(max, prevMax);
         }
-
+        
         return max;
     }
 }
+
+// public class MaxSubarray {
+//     public int maxSubArray(int[] nums) {
+//         if (nums == null || nums.length == 0) {
+//         	return 0;
+//         }
+
+//         int[] table = new int[nums.length];
+//         table[0] = nums[0];
+//         int max = table[0];
+//         for (int i = 1; i < nums.length; ++i) {
+//         	table[i] = Math.max(table[i - 1] + nums[i], nums[i]);
+//         	if (table[i] > max) {
+//         		max = table[i];
+//         	}
+//         }
+
+//         return max;
+//     }
+// }
