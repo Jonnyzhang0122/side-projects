@@ -13,32 +13,83 @@
  *     RandomListNode(int x) { this.label = x; }
  * };
  */
-public class RandomPonter {
+
+// constant space version
+public class Solution {
     public RandomListNode copyRandomList(RandomListNode head) {
         if (head == null) {
-        	return null;
+            return head;
         }
-
-        HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
+        
         RandomListNode node = head;
-        // create new nodes and copy the label from the original one
         while (node != null) {
-        	RandomListNode newNode = new RandomListNode(node.label);
-        	map.put(node, newNode);
-        	node = node.next;
+            RandomListNode temp = node.next;
+            // create the new node
+            RandomListNode newNode = new RandomListNode(node.label);
+            node.next = newNode;
+            newNode.next = temp;
+            newNode.random = node.random;
+            
+            // continue to the next one
+            node = temp;
         }
+        
+        // now construct the new list with its random pointers and reconstruct the original list
         node = head;
-        RandomListNode temp;
         while (node != null) {
-        	temp = map.get(node);
-        	temp.next = map.get(node.next);
-        	temp.random = map.get(node.random);
-        	node = node.next;
+            // correct new list's random pointers
+            if (node.next.random != null) {
+                node.next.random = node.next.random.next;
+            }
+            node = node.next.next;
         }
-
-        return map.get(head);
+        
+        node = head;
+        RandomListNode newHead = head.next;
+        while (node != null) {
+            // temporary save the next original node
+            RandomListNode temp = node.next.next;
+            // let the new node point to next new node
+            if (node.next.next != null) {
+                node.next.next = node.next.next.next;
+            }
+            else {
+                node.next.next = null;
+            }
+            // let the original node point to next original node
+            node.next = temp;
+            node = node.next;
+        }
+        return newHead;
     }
 }
+
+// public class RandomPonter {
+//     public RandomListNode copyRandomList(RandomListNode head) {
+//         if (head == null) {
+//         	return null;
+//         }
+
+//         HashMap<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
+//         RandomListNode node = head;
+//         // create new nodes and copy the label from the original one
+//         while (node != null) {
+//         	RandomListNode newNode = new RandomListNode(node.label);
+//         	map.put(node, newNode);
+//         	node = node.next;
+//         }
+//         node = head;
+//         RandomListNode temp;
+//         while (node != null) {
+//         	temp = map.get(node);
+//         	temp.next = map.get(node.next);
+//         	temp.random = map.get(node.random);
+//         	node = node.next;
+//         }
+
+//         return map.get(head);
+//     }
+// }
 
 // slow version
 // public class Solution {
