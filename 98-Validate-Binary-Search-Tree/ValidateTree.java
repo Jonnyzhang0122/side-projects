@@ -1,24 +1,3 @@
-// Validate Binary Search Tree Total Accepted: 49807 Total Submissions: 240109 My Submissions Question Solution 
-// Given a binary tree, determine if it is a valid binary search tree (BST).
-
-// Assume a BST is defined as follows:
-
-// The left subtree of a node contains only nodes with keys less than the node's key.
-// The right subtree of a node contains only nodes with keys greater than the node's key.
-// Both the left and right subtrees must also be binary search trees.
-// confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
-
-// Hide Tags Tree Depth-first Search
-
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 
 // stack version
 public class Solution {
@@ -47,7 +26,7 @@ public class Solution {
     }
 }
 
-
+// recursion version
 // public class Solution {
 //     private long curVal = (long)Integer.MIN_VALUE - 1;
     
@@ -71,6 +50,9 @@ public class Solution {
 //     }
 // }
 
+
+
+// -------------------------------------- old -------------------------------
 
 // public class ValidateTree {
 //   //   public boolean isValidBST(TreeNode root) {
