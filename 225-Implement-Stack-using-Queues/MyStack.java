@@ -1,34 +1,32 @@
-
 class MyStack {
-	private Queue<Integer> queueMain = new LinkedList<Integer>();
-	private Queue<Integer> queueTemp = new LinkedList<Integer>();
-
+    Queue<Integer> mainQueue = new LinkedList<>();
+    Queue<Integer> tempQueue = new LinkedList<>();
+    
     // Push element x onto stack.
     public void push(int x) {
-        queueTemp.offer(x);
-        while (!queueMain.isEmpty()) {
-        	queueTemp.offer(queueMain.peek());
-        	queueMain.poll();
+        tempQueue.offer(x);
+        while (!mainQueue.isEmpty()) {
+            tempQueue.offer(mainQueue.poll());
         }
-
-        Queue<Integer> temp;
-        temp = queueMain;
-        queueMain = queueTemp;
-        queueTemp = temp;
+        
+        // now swap main and temp
+        Queue<Integer> swapper = mainQueue;
+        mainQueue = tempQueue;
+        tempQueue = swapper;
     }
 
     // Removes the element on top of the stack.
     public void pop() {
-        queueMain.poll();
+        mainQueue.poll();
     }
 
     // Get the top element.
     public int top() {
-    	return queueMain.peek();
+        return mainQueue.peek();
     }
 
     // Return whether the stack is empty.
     public boolean empty() {
-        return queueMain.isEmpty();
+        return mainQueue.isEmpty();
     }
 }
