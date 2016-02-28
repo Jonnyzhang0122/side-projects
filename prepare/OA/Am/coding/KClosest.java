@@ -78,3 +78,53 @@ public class KClosest {
 		}
 	}
 }
+
+
+// rewrote
+// public static Point[] kClosest(Point[] points, int k) {
+// 		if (k <= 0) {
+// 			return null;
+// 		}
+// 		else if (points.length <= k) {
+// 			return points;
+// 		}
+
+// 		PriorityQueue<Point> maxHeap = new PriorityQueue<>(k, new Comparator<Point>() {
+// 			public int compare(Point p1, Point p2) {
+// 				double dis1 = getDis(p1);
+// 				double dis2 = getDis(p2);
+// 				if (dis1 == dis2) {
+// 					return 0;
+// 				}
+// 				else if (dis1 > dis2) {
+// 					return -1;
+// 				}
+// 				else {
+// 					return 1;
+// 				}
+// 			}
+// 		});
+
+// 		for (Point p : points) {
+// 			if (maxHeap.size() < k) {
+// 				maxHeap.offer(p);
+// 			}
+// 			else {
+// 				// only put point into heap if it has smaller distance
+// 				if (getDis(maxHeap.peek()) > getDis(p)) {
+// 					maxHeap.poll();
+// 					maxHeap.offer(p);
+// 				}
+// 			}
+// 		}
+
+// 		Point[] res = new Point[k];
+// 		for (int i = k - 1; i >= 0; --i) {
+// 			res[i] = maxHeap.poll();
+// 		}
+// 		return res;
+// 	}
+
+// 	private static double getDis(Point p) {
+// 		return p.x * p.x + p.y * p.y;
+// 	}
