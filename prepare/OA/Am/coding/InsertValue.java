@@ -11,55 +11,93 @@ public class InsertValue {
 		}
 	}
 
-	public static void insert(ListNode cur, int insert) {
-		if (cur == null) {
-			return;
-		}
+	// rewrote version
+	public static ListNode insert(ListNode cur, int insert) {
 		ListNode insertNode = new ListNode(insert);
-		// if only one node
-		if (cur.next == cur) {
-			cur.next = insertNode;
-			insertNode.next = cur;
-			return;
+		if (cur == null) {
+			// return the new node only
+			insertNode.next = insertNode;
+			return insertNode;
 		}
 
-		// first gain the min and max nodes
-		// also save the original node to avoid the case all numbers are the same
-		ListNode prev = cur, ori = cur, min, max;
-		cur = cur.next;
-		while (cur.val >= prev.val) {
-			// if loop through once without discovering min or max, the all same case
-			if (cur == ori) {
-				// insert between cur and prev
-				prev.next = insertNode;
-				insertNode.next = cur;
-				return;
+		// record the origin node to avoid infinitely loop
+		ListNode origin = cur;
+		while (true) {
+			// two cases to trigger insert operation
+			// normal situation
+			if (cur.val < insert && cur.next.val >= insert) {
+				break;
 			}
-			prev = cur;
+			// insert value larger than max or smaller than min
+			else if (cur.val > cur.next.val && (insert >= cur.val || insert <= cur.next.val)) {
+				break;
+			}
 			cur = cur.next;
-		}
-		// discovered the min and max
-		min = cur;
-		max = prev;
 
-		// check edge case, insert > max or insert < min, put between min and max
-		if (insert <= min.val || insert >= max.val) {
-			max.next = insertNode;
-			insertNode.next = min;
-			return;
+			// if loop once without discovering insert position, the all same case, could insert anywhere
+			if (cur == origin) {
+				break;
+			}
 		}
 
-		// loop again to find correct position to insert
-		prev = min;
-		cur = min.next;
-		while (insert > cur.val) {
-			prev = cur;
-			cur = cur.next;
-		}
-		// now insert the new node before cur node
-		prev.next = insertNode;
-		insertNode.next = cur;
+		// put the new node between cur and cur.next
+		insertNode.next = cur.next;
+		cur.next = insertNode;
+		return insertNode;
 	}
+
+	// long version
+	// public static ListNode insert(ListNode cur, int insert) {
+	// 	ListNode insertNode = new ListNode(insert);
+	// 	if (cur == null) {
+	// 		insertNode.next = insertNode;
+	// 		return insertNode;
+	// 	}
+	// 	// if only one node
+	// 	if (cur.next == cur) {
+	// 		cur.next = insertNode;
+	// 		insertNode.next = cur;
+	// 		return insertNode;
+	// 	}
+
+	// 	// first gain the min and max nodes
+	// 	// also save the original node to avoid the case all numbers are the same
+	// 	ListNode prev = cur, ori = cur, min, max;
+	// 	cur = cur.next;
+	// 	while (cur.val >= prev.val) {
+	// 		// if loop through once without discovering min or max, the all same case
+	// 		if (cur == ori) {
+	// 			// insert between cur and prev
+	// 			prev.next = insertNode;
+	// 			insertNode.next = cur;
+	// 			return insertNode;
+	// 		}
+	// 		prev = cur;
+	// 		cur = cur.next;
+	// 	}
+	// 	// discovered the min and max
+	// 	min = cur;
+	// 	max = prev;
+
+	// 	// check edge case, insert > max or insert < min, put between min and max
+	// 	if (insert <= min.val || insert >= max.val) {
+	// 		max.next = insertNode;
+	// 		insertNode.next = min;
+	// 		return insertNode;
+	// 	}
+
+	// 	// loop again to find correct position to insert
+	// 	prev = min;
+	// 	cur = min.next;
+	// 	while (insert > cur.val) {
+	// 		prev = cur;
+	// 		cur = cur.next;
+	// 	}
+	// 	// now insert the new node before cur node
+	// 	prev.next = insertNode;
+	// 	insertNode.next = cur;
+	// 	return insertNode;
+	// }
 
 	public static void main(String[] args) {
 		ListNode n1 = new ListNode(1);
@@ -77,8 +115,7 @@ public class InsertValue {
 		n7.next = n8;
 		n8.next = n1;
 
-		InsertValue.insert(n6, 8);
-		ListNode cur = n1;
+		ListNode cur = InsertValue.insert(n6, 4);
 		for (int i = 0; i < 9; ++i) {
 			System.out.printf("%d ", cur.val);
 			cur = cur.next;
@@ -94,8 +131,7 @@ public class InsertValue {
 		n12.next = n13;
 		n13.next = n11;
 
-		InsertValue.insert(n12, 8);
-		cur = n11;
+		cur = InsertValue.insert(n12, 2);
 		for (int i = 0; i < 5; ++i) {
 			System.out.printf("%d ", cur.val);
 			cur = cur.next;
