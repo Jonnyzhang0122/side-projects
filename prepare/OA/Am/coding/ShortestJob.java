@@ -19,6 +19,9 @@ public class ShortestJob {
 		// create a min heap for jobs, job with shortest duration would on the top
 		PriorityQueue<Job> jobPool = new PriorityQueue<Job>(4, new Comparator<Job>(){
 			public int compare(Job j1, Job j2) {
+				if (j1.duration == j2.duration) {
+					return j1.arrivedTime - j2.arrivedTime;
+				}
 				return j1.duration - j2.duration;
 			}
 		});
@@ -56,8 +59,10 @@ public class ShortestJob {
 		// int[] durations = {7, 4, 1, 4};
 		// int[] requests = {0, 1, 3, 9};
 		// int[] durations = {2, 1, 7, 5};
-		int[] requests = {0, 2, 3, 9};
-		int[] durations = {1, 1, 7, 5};
+		// int[] requests = {0, 2, 3, 9};
+		// int[] durations = {1, 1, 7, 5};
+		int[] requests = {2, 2, 6, 9};
+		int[] durations = {1, 2, 7, 5};
 		System.out.println(ShortestJob.shortest(requests, durations));
 	}
 }
