@@ -48,3 +48,36 @@ public class IsSubTree {
 		return judge(T1.left, T2.left) && judge(T1.right, T2.right);
 	}
 }
+
+
+// rewrote
+// public class Solution {
+// 	public boolean isSubtree(TreeNode T1, TreeNode T2) {
+// 		// first to find out where to start
+// 		if (T2 == null) {
+// 			return true;
+// 		}
+// 		else if (T1 == null) {
+// 			return false;
+// 		}
+
+// 		// if values match, start examing same tree
+// 		if (T1.val == T2.val) {
+// 			if (isSameTree(T1, T2)) {
+// 				return true;
+// 			}
+// 		}
+// 		// other wise continue searching for the starting point
+// 		return isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
+//     }
+
+//     private boolean isSameTree(TreeNode T1, TreeNode T2) {
+//     	if (T1 == null && T2 == null) {
+//     		return true;
+//     	}
+//     	else if ((T1 == null || T2 == null) || T1.val != T2.val) {
+//     		return false;
+//     	}
+//     	return isSameTree(T1.left, T2.left) && isSameTree(T1.right, T2.right);
+//     }
+// }
