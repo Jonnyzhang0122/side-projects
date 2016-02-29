@@ -22,7 +22,7 @@ public class CountMiss {
 		public LRUCache(int cap) {
 			capacity = cap;
 			miss = 0;
-			// the argument for map is (initialCapacity, loadFactor, accessOrder)
+			// the arguments for map are (initialCapacity, loadFactor, accessOrder)
 			map = new LinkedHashMap<Integer, Integer>(cap, 0.75f, true) {
 				protected boolean removeEldestEntry(Map.Entry eldest) {
 					return size() > capacity;
