@@ -8,6 +8,11 @@ methodology: loop from the left, once current number is larger than the next one
 */
 public class DuplicateOne {
 	public static int duplicateOne(int num) {
+		// out of bound detection
+		if (num < 1 || num > 10000000) {
+			return -1;
+		}
+
 		StringBuilder res = new StringBuilder();
 		String numS = "" + num;
 		boolean duplicated = false;
@@ -18,7 +23,9 @@ public class DuplicateOne {
 				duplicated = true;
 			}
 		}
+		// last bit is not yet be appended
 		res.append(numS.charAt(numS.length() - 1));
+		// if duplication not executed, duplicate the last bit
 		if (!duplicated) {
 			res.append(numS.charAt(numS.length() - 1));
 		}
