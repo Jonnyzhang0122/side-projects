@@ -18,7 +18,7 @@ public class DuplicateOne {
 		boolean duplicated = false;
 		for (int i = 0; i < numS.length() - 1; ++i) {
 			res.append(numS.charAt(i));
-			if (!duplicated && numS.charAt(i) - numS.charAt(i + 1) > 0) {
+			if (!duplicated && numS.charAt(i) - numS.charAt(i + 1) >= 0) {
 				res.append(numS.charAt(i));
 				duplicated = true;
 			}
@@ -36,8 +36,21 @@ public class DuplicateOne {
 		int test1 = 1234;
 		int test2 = 1000;
 		int test3 = 9378;
+		int test4 = 0;
+		int test5 = 1000000000;
+		int test6 = -10000;
+		int test7 = 2222;
+		int test8 = 4321;
+		int test9 = 8478;
+
 		System.out.println(test1 + " -> " + DuplicateOne.duplicateOne(test1));
 		System.out.println(test2 + " -> " + DuplicateOne.duplicateOne(test2));
 		System.out.println(test3 + " -> " + DuplicateOne.duplicateOne(test3));
+		System.out.println(test4 + " -> " + DuplicateOne.duplicateOne(test4));
+		System.out.println(test5 + " -> " + DuplicateOne.duplicateOne(test5));
+		System.out.println(test6 + " -> " + DuplicateOne.duplicateOne(test6));
+		System.out.println(test7 + " -> " + DuplicateOne.duplicateOne(test7));
+		System.out.println(test8 + " -> " + DuplicateOne.duplicateOne(test8));
+		System.out.println(test9 + " -> " + DuplicateOne.duplicateOne(test9));
 	}
 }
