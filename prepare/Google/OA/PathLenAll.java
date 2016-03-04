@@ -26,8 +26,8 @@ public class PathLenAll {
 				// reset found flag if level up
 				if (space + 1 < stack.size()) {
 					// check whether need to remove
-					if (foundLevels.contains(space + 1)) {
-						foundLevels.remove(space + 1);
+					if (foundLevels.contains(stack.size())) {
+						foundLevels.remove(stack.size());
 					}
 				}
 				curLen -= (stack.pop().length() + 1);
@@ -35,13 +35,13 @@ public class PathLenAll {
 
 			// check if it is image
 			if (!foundLevels.contains(space) && (curPath.endsWith(".jpeg") || curPath.endsWith(".gif") || curPath.endsWith(".png"))) {
-				sum += curLen + 1; // +1 for slash
+				sum += curLen;
 				foundLevels.add(space);
 
-				for (String file : stack) {
-					System.out.printf("/%s", file);
-				}
-				System.out.printf("/\n");
+				// for (String file : stack) {
+				// 	System.out.printf("/%s", file);
+				// }
+				// System.out.printf("/\n");
 			}
 
 			// append current path len
@@ -75,6 +75,11 @@ public class PathLenAll {
 		String test5 = "dir\nddir\n a.txt\n b.jpeg\n c.gif\nddir2\ndddir\nddddir\n aaa.exe\nonemore.png\ndir1\n dir2\n  dir3\n   what.png\n   dir4\n    new.jpeg\n   new1.gif\nanothermore.png";
 		System.out.println("Input:\n" + test5);
 		System.out.println("Output:\n" + PathLenAll.sum(test5));
+		System.out.println("");
+
+		String test6 = "dir\nddir\n a.txt\n b.jpeg\n c.gif\nddir2\ndddir\nddddir\n aaa.exe\nonemore.png\ndir1\n dir2\n  dir3\n   what.png\n   dir4\n    new.jpeg\n   new1.gif\nanothermore.png\ndir5\n dir6\n  dir7\n   img1.gif";
+		System.out.println("Input:\n" + test6);
+		System.out.println("Output:\n" + PathLenAll.sum(test6));
 		System.out.println("");
 	}
 }

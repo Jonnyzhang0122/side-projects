@@ -51,6 +51,8 @@ public class DeleteOneDup {
 		int test5 = 554332211;
 		int test6 = 554662211;
 		int test7 = 554332110;
+		int test8 = 123456;
+		int test9 = 76473124;
 
 		System.out.println(test1 + " -> " + DeleteOneDup.deleteOne(test1));
 		System.out.println(test2 + " -> " + DeleteOneDup.deleteOne(test2));
@@ -59,5 +61,7 @@ public class DeleteOneDup {
 		System.out.println(test5 + " -> " + DeleteOneDup.deleteOne(test5));
 		System.out.println(test6 + " -> " + DeleteOneDup.deleteOne(test6));
 		System.out.println(test7 + " -> " + DeleteOneDup.deleteOne(test7));
+		System.out.println(test8 + " -> " + DeleteOneDup.deleteOne(test8));
+		System.out.println(test9 + " -> " + DeleteOneDup.deleteOne(test9));
 	}
 }
