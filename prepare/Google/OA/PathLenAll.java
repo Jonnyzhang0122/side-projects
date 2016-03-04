@@ -5,6 +5,7 @@ public class PathLenAll {
 		String[] paths = input.trim().split("\n");
 		
 		Stack<String> stack = new Stack<>();
+		// hashset to indicate which levels has found img, avoid duplicate
 		HashSet<Integer> foundLevels = new HashSet<>();
 		int sum = 0, curLen = 0;
 		for (String curPath : paths) {
@@ -66,9 +67,14 @@ public class PathLenAll {
 		System.out.println("Output:\n" + PathLenAll.sum(test3));
 		System.out.println("");
 
-		String test4 = "dir\nddir\n a.txt\n b.jpeg\n c.gif\nddir2\ndddir\nddddir\n aaa.exe\ndir1\n dir2\n  dir3\n   what.png\n   dir4\n    new.jpeg\n   new1.gif";
+		String test4 = "dir\nddir\n a.txt\n b.jpeg\n c.gif\nddir2\ndddir\nddddir\n aaa.exe\ndir1\n dir2\n  dir3\n   what.png\n   dir4\n    new.jpeg\n   new1.gif\n";
 		System.out.println("Input:\n" + test4);
 		System.out.println("Output:\n" + PathLenAll.sum(test4));
+		System.out.println("");
+
+		String test5 = "dir\nddir\n a.txt\n b.jpeg\n c.gif\nddir2\ndddir\nddddir\n aaa.exe\nonemore.png\ndir1\n dir2\n  dir3\n   what.png\n   dir4\n    new.jpeg\n   new1.gif\nanothermore.png";
+		System.out.println("Input:\n" + test5);
+		System.out.println("Output:\n" + PathLenAll.sum(test5));
 		System.out.println("");
 	}
 }
