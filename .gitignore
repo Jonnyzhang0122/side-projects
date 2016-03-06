@@ -10,3 +10,5 @@ test
 
 // vim backup files
 *.*~
+
+*.png
