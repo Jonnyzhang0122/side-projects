@@ -5,16 +5,28 @@ public class Solution {
         dp[0] = 0;
         for (int i = 1; i <= n; ++i) {
             int min = Integer.MAX_VALUE;
-            int j = 1;
-            int remain = i - j * j;
-            while (remain >= 0) {
-                min = Math.min(dp[remain] + 1, min);
-                ++j;
-                remain = i - j * j;
+            for (int j = 1; j * j <= i; ++j) {
+                min = Math.min(min, dp[i - j * j] + 1);
             }
             dp[i] = min;
         }
         return dp[n];
+    }
+}
+
+// ArrayList version, but slower
+public class Solution {
+    public int numSquares(int n) {
+        List<Integer> dp = new ArrayList<>();
+        dp.add(0); // dp[0] = 0
+        for (int i = 1; i <= n; ++i) {
+            int min = Integer.MAX_VALUE;
+            for (int j = 1; j * j <= i; ++j) {
+                min = Math.min(min, dp.get(i - j * j) + 1);
+            }
+            dp.add(min);
+        }
+        return dp.get(n);
     }
 }
 
