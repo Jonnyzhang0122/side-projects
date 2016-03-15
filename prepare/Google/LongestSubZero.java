@@ -3,6 +3,7 @@ import java.util.*;
 public class LongestSubZero {
 	public static int[] longest(int[] nums) {
 		HashMap<Integer, Integer> map = new HashMap<>();
+		map.put(0, -1);
 		int sum = 0, maxLen = Integer.MIN_VALUE;
 		int start = -1;
 		for (int i = 0; i < nums.length; ++i) {
