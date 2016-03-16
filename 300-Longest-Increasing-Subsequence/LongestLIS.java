@@ -1,3 +1,25 @@
+// binary search version
+public class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if (nums.length == 0) return 0;
+        List<Integer> seq = new ArrayList<>();
+        for (int n : nums) {
+            // if seq is empty or current number is larger than the largest number in seq
+            if (seq.size() == 0 || seq.get(seq.size() - 1) < n) {
+                seq.add(n);
+            }
+            // find correct position an replace previous value
+            else {
+                int pos = Collections.binarySearch(seq, n);
+                if (pos < 0) {
+                    // search would return pos = (-(insertion point) - 1)
+                    seq.set(-pos - 1, n);
+                }
+            }
+        }
+        return seq.size();
+    }
+}
 
 
 // N^2 version
