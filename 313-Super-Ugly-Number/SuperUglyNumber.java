@@ -1,6 +1,6 @@
 
 
-// O(N^2) version
+// O(kn) version
 public class Solution {
     public int nthSuperUglyNumber(int n, int[] primes) {
         int[] uglys = new int[n];
