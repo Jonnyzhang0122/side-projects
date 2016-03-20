@@ -32,6 +32,39 @@ public class Solution {
     }
 }
 
+
+// leftMost version
+public class Solution {
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        if (s.length() <= 2) {
+            return s.length();
+        }
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        int max = 0, start = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            char cur = s.charAt(i);
+            if (map.containsKey(cur)) {
+                map.put(cur, i);
+            }
+            else {
+                if (map.size() == 2) {
+                    int leftMost = s.length();
+                    for (int j : map.values()) {
+                        leftMost = Math.min(leftMost, j);
+                    }
+                    map.remove(s.charAt(leftMost));
+                    start = leftMost + 1;
+                }
+                map.put(cur, i);
+            }
+            max = Math.max(max, i - start + 1);
+        }
+        return max;
+    }
+}
+
+
 /*
 public class Solution {
     public int lengthOfLongestSubstringTwoDistinct(String s) {
