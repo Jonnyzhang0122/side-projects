@@ -1,3 +1,62 @@
+// merge sort version
+public class Solution {
+    private class NumDex {
+        int value;
+        int index;
+        public NumDex(int val, int ind) {
+            value = val;
+            index = ind;
+        }
+    }
+    
+    public List<Integer> countSmaller(int[] nums) {
+        if (nums.length == 0) {
+            return new ArrayList<Integer>();
+        }
+        
+        int[] table = new int[nums.length];
+        NumDex[] numDexs = new NumDex[nums.length];
+        for (int i = 0; i < nums.length; ++i) {
+            numDexs[i] = new NumDex(nums[i], i);
+        }
+        mergeCount(numDexs, 0, nums.length - 1, table);
+        List<Integer> res = new ArrayList<>();
+        for (int n : table) {
+            res.add(n);
+        }
+        return res;
+    }
+    
+    public void mergeCount(NumDex[] nums, int start, int end, int[] table) {
+        if (start >= end) {
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        mergeCount(nums, start, mid, table);
+        mergeCount(nums, mid + 1, end, table);
+        merge(nums, start, mid, end, table);
+    }
+
+    public void merge(NumDex[] nums, int start, int mid, int end, int[] table) {
+        NumDex[] copySpace = new NumDex[end - start + 1];
+        int left = start, right = mid + 1;
+        for (int i = 0; i < copySpace.length; ++i) {
+            if (right > end || left <= mid && nums[left].value <= nums[right].value) {
+                table[nums[left].index] += right - mid - 1;
+                copySpace[i] = nums[left++];
+            }
+            else {
+                copySpace[i] = nums[right++];
+            }
+        }
+
+        // copy back the sorted numbers
+        for (int i = 0; i < copySpace.length; ++i) {
+            nums[i + start] = copySpace[i];
+        }
+    }
+}
 
 
 // binary search version

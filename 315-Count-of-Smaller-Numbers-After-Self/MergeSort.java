@@ -2,21 +2,21 @@ import java.util.*;
 
 public class MergeSort {
 	public static void sort(int[] nums) {
-		helper(nums, 0, nums.length - 1);
+		sort(nums, 0, nums.length - 1);
 	}
 
-	public static void helper(int[] nums, int start, int end) {
+	public static void sort(int[] nums, int start, int end) {
 		if (start >= end) {
 			return;
 		}
 
 		int mid = start + (end - start) / 2;
-		helper(nums, start, mid);
-		helper(nums, mid + 1, end);
+		sort(nums, start, mid);
+		sort(nums, mid + 1, end);
 		merge(nums, start, mid, end);
 	}
 
-	public static void merge(int[] nums, int start, int mid, int end) {
+	private static void merge(int[] nums, int start, int mid, int end) {
 		int[] copySpace = new int[end - start + 1];
 		int left = start, right = mid + 1;
 		for (int i = 0; i < copySpace.length; ++i) {
