@@ -1,3 +1,18 @@
+// indegree and outdegree solution
+public class Solution {
+    public boolean isValidSerialization(String preorder) {
+        String[] vals = preorder.split(",");
+        int diff = 1;
+        for (String cur : vals) {
+            if (--diff < 0) return false;
+            if (!cur.equals("#")) diff += 2;
+        }
+        return diff == 0;
+    }
+}
+
+
+// stack solution
 public class Solution {
     public boolean isValidSerialization(String preorder) {
         if (preorder.length() == 0) {
