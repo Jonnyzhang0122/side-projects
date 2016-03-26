@@ -1,51 +1,24 @@
-// wrong answer
-// /**
-//  * Definition for a binary tree node.
-//  * public class TreeNode {
-//  *     int val;
-//  *     TreeNode left;
-//  *     TreeNode right;
-//  *     TreeNode(int x) { val = x; }
-//  * }
-//  */
-// public class Solution {
-//     public int closestValue(TreeNode root, double target) {
-//         int prevVal = -1;
-//         double curDiff = Double.MAX_VALUE;
-//         double prevDiff;
-//         while (root != null) {
-//             prevDiff = curDiff;
-//             curDiff = Math.abs(target - (double)root.val);
-//             System.out.println(root.val + " " + curDiff);
-//             if (curDiff > prevDiff) {
-//                 break;
-//             }
-//             prevVal = root.val;
-//             if ((double)root.val < target) {
-//                 root = root.right;
-//             }
-//             else if ((double)root.val > target) {
-//                 root = root.left;
-//             }
-//             else {
-//                 return root.val;
-//             }
-//         }
-        
-//         return prevVal;
-//     }
-// }
+// iteration version
+public class Solution {
+    public int closestValue(TreeNode root, double target) {
+        int res = root.val;
+        while (root != null) {
+            if (Math.abs(root.val - target) < Math.abs(res - target)) {
+                res = root.val;
+            }
+            if (root.val > target) {
+                root = root.left;
+            }
+            else {
+                root = root.right;
+            }
+        }
+        return res;
+    }
+}
 
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
+// recursive
 public class Solution {
     public int closestValue(TreeNode root, double target) {
         int curVal = root.val;
