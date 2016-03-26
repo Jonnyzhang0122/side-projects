@@ -1,7 +1,4 @@
-
-
-
-// no stack solution
+// non stack solution
 public class Solution {
     public int calculate(String s) {
         int res = 0, localRes = 0;
