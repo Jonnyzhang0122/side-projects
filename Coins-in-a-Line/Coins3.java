@@ -77,8 +77,39 @@ public class Coins3 {
     }
 
     public static void main(String args[]) {
+        Coins3 A = new Coins3();
     	int[] values = {1, 4};
-    	Coins3 A = new Coins3();
     	System.out.println(A.firstWillWin(values));
+        System.out.println(A.firstWillWinII(values));
+
+        int[] values2 = {3, 2, 2};
+        System.out.println(A.firstWillWin(values2));
+        System.out.println(A.firstWillWinII(values2));
+
+        int[] values3 = {1, 2, 4};
+        System.out.println(A.firstWillWin(values3));
+        System.out.println(A.firstWillWinII(values3));
+
+        int[] values4 = {1, 20, 4};
+        System.out.println(A.firstWillWin(values4));
+        System.out.println(A.firstWillWinII(values4));
+    }
+
+    // back tracking version
+    public boolean firstWillWinII(int[] values) {
+        return winOrNot(values, 0, values.length - 1, 0, 0);
+    }
+
+    public boolean winOrNot(int[] values, int start, int end, int enemyGain, int prevGain) {
+        // end condition
+        if (start == end) {
+            return prevGain + values[start] > enemyGain;
+        }
+
+        // now try two different solutions
+        // if enemy return false, we win
+        if (!winOrNot(values, start + 1, end, prevGain + values[start], enemyGain) || !winOrNot(values, start, end - 1, prevGain + values[end], enemyGain)) return true;
+        // otherwise, we lose
+        return false;
     }
 }
