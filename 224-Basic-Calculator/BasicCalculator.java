@@ -1,3 +1,43 @@
+// iterative solution
+public class Solution {
+    public int calculate(String s) {
+        int res = 0, sign = 1;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < s.length(); ++i) {
+            // if meet number
+            if (Character.isDigit(s.charAt(i))) {
+                int cur = s.charAt(i) - '0';
+                while (i + 1 < s.length() && Character.isDigit(s.charAt(i + 1))) {
+                    cur = cur * 10 + s.charAt(i++ + 1) - '0';
+                }
+                res += cur * sign;
+            }
+            // if meet sign
+            else if (s.charAt(i) == '-') {
+                sign = -1;
+            }
+            else if (s.charAt(i) == '+') {
+                sign = 1;
+            }
+            // if meet with start bracket
+            else if (s.charAt(i) == '(') {
+                // push res and sign into stack
+                stack.push(res);
+                stack.push(sign);
+                res = 0;
+                sign = 1;
+            }
+            // if meet with end bracket
+            else if (s.charAt(i) == ')') {
+                res = res * stack.pop() + stack.pop();
+            }
+        }
+        return res;
+    }
+}
+
+
+// recursive solution
 import java.util.*;
 
 public class BasicCalculator {
