@@ -1,4 +1,28 @@
-
+// improved O(n) solution
+public class Solution {
+    public List<Integer> closestKValues(TreeNode root, double target, int k) {
+        Queue<Integer> queue = new LinkedList<>();
+        inorder(root, target, k, queue);
+        return (List)queue;
+    }
+    
+    // return true means truely end, false means 
+    private boolean inorder(TreeNode root, double target, int k, Queue<Integer> queue) {
+        if (root == null) return false;
+        
+        if (inorder(root.left, target, k, queue)) return true;
+        
+        if (queue.size() == k) {
+            if (Math.abs((double)queue.peek() - target) < Math.abs((double)root.val - target)) {
+                return true;
+            }
+            queue.poll();
+        }
+        queue.offer(root.val);
+        
+        return inorder(root.right, target, k, queue);
+    }
+}
 
 
 // inorder travelsal solution
