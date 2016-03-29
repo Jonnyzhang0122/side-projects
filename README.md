@@ -1,2 +1,2 @@
-This repo stores some interesting programming problems I encountered.
+This repo contains some interesting programming problems I encountered.
 Mainly in Java.
