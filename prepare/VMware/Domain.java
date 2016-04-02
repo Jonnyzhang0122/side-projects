@@ -50,6 +50,7 @@ public class Domain {
 				while (end < line.length() && line.charAt(end) != '"') {
 					++end;
 				}
+				// add content within ""
 				res.add(line.substring(i - 3, end));
 				// skip url part
 				i = end;
