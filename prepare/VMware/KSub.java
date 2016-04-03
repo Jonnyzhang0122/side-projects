@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class KSub {
-	public static int kSub(int[] nums, int k) {
+	public static long kSub(int[] nums, int k) {
 		if (k == 0 || nums.length == 0) {
 			return -1;
 		}
@@ -17,10 +17,10 @@ public class KSub {
 			++modCount[sum];
 		}
 
-		int res = 0;
+		long res = 0;
 		for (int count : modCount) {
 			// count of all pairs from prefix sum that have the same remainder
-			res += count * (count - 1) / 2;
+			res += (long)count * (count - 1) / 2;
 		}
 		return res;
 	}

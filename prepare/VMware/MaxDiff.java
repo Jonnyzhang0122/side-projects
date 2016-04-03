@@ -6,7 +6,7 @@ public class MaxDiff {
 			return -1;
 		}
 
-		int min = Integer.MAX_VALUE;
+		int min = nums[0];
 		int diff = 0;
 		for (int n : nums) {
 			diff = Math.max(n - min, diff);
