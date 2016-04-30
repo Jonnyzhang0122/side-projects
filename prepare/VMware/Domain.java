@@ -61,7 +61,7 @@ public class Domain {
 
 	public static void main(String[] args) {
 		try {
-			File file = new File("test1.html");
+			File file = new File("test2.html");
 			Scanner scanner = new Scanner(file, "UTF-8");
 			List<String> page = new ArrayList<>();
 			while (scanner.hasNextLine()) {
